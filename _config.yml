@@ -1,4 +1,4 @@
-name: Blog Geek de Jeremy Hermelin
+name: Blog de NITTS Webinar
 markdown: kramdown
 permalink: /blog/:title
 gems:
