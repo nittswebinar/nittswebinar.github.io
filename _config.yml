@@ -1,0 +1,5 @@
+name: Blog Geek de Jeremy Hermelin
+markdown: kramdown
+permalink: /blog/:title
+gems:
+  - jekyll-sitemap

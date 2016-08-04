@@ -1,2 +1,1 @@
-# nittswebinar.github.io
-NITTS Webinar website
+# jeremh2.github.io

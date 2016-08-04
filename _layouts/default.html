@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+  {% include head.html %}
+
+  <body>
+    <nav>
+    		<ul>
+        		<li><a href="/">Home</a></li>
+	        	<li><a href="/about">About</a></li>
+        		<li><a href="/blog">Blog</a></li>
+    		</ul>
+		</nav>
+    <!-- page content -->
+
+    <div class="container">
+
+      {{ content }}
+
+		</div><!-- /.container -->
+
+    {% include footer.html %}
+
+    {% include scripts.html %}
+
+  </body>
+</html>
