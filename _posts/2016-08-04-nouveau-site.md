@@ -14,5 +14,5 @@ C'est tout pour l'instant, mais il va y avoir du nouveau dans les prochains jour
 
 A bientôt.
 
-** Jeremy,
-CEO **
+** Jeremy, **
+** CEO **
