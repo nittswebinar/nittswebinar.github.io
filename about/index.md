@@ -1,9 +1,5 @@
 ---
 layout: default
-title: "A propos de Jeremy Hermelin"
-date: 2016-08-01
+title: "A propos de NITTS Webinar"
+date: 2016-08-04
 ---
-
-Je m'appelle Jeremy Hermelin, j'ai 25 ans, et je suis à la fois développeur mais aussi auteur.
-
-## Me poser une question ?
