@@ -1,5 +1,7 @@
 name: Blog de NITTS Webinar
 markdown: kramdown
 permalink: /blog/:title
+sass:
+  style: compressed
 gems:
   - jekyll-sitemap
