@@ -23,7 +23,7 @@ var nittsUI = angular.module('nittsUI', [
 ]);
 
 
-nittsApp.run(['amMoment', 'editableOptions', 'editableThemes', function(amMoment, editableOptions, editableThemes) {
+nittsUI.run(['amMoment', 'editableOptions', 'editableThemes', function(amMoment, editableOptions, editableThemes) {
   // amMoment configuration for french only
   amMoment.changeLocale('fr');
 

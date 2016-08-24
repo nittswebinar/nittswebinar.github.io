@@ -3,7 +3,7 @@
 *  nittsApp Payment directive
 */
 
-nittsApp.directive('payment', ['Session', 'api', '$state', '$uibModal', function(Session, api, $state, $uibModal) {
+nittsUI.directive('payment', ['Session', 'api', '$state', '$uibModal', function(Session, api, $state, $uibModal) {
 
   return {
     restrict: 'A',
