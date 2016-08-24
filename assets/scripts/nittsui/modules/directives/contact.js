@@ -59,7 +59,7 @@ contactMe.directive('contactMe', ['api', '$uibModal', 'Session', 'alerts', funct
           else {
             $uibModal.open({
               size: 'lg',
-              templateUrl: 'views/elements/contactMe.html',
+              templateUrl: '/elements/contactMe.html',
               controller: ['$scope', function($scope) {
                 $scope.availableTypes = ['Poser une question', 'Signaler un bug', 'Problème technique', 'Partenariat', 'Demande spéciale', 'Autre'];
                 $scope.contactMe = message;
