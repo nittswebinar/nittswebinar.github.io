@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: page
 title: "Le Manifeste de NITTS Webinar"
 date: 2016-08-06
 ---
