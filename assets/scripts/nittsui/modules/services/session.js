@@ -158,6 +158,7 @@ sessionService.service('Session', ['$http', '$cookies', function($http, $cookies
       }, function(res) {
         // if error, then reset the session locally
         if (res.status == 403) {
+          
           updateUserCookie({});
 
           // redirect to the home
