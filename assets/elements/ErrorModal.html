@@ -1,0 +1,13 @@
+<div class='modal-header'>
+  <button type="button" class="close" aria-label="Close" ng-click="$dismiss()"><span aria-hidden="true">&times;</span></button>
+  <h4 class="modal-title">Une erreur s'est produite...</h4>
+</div>
+
+<div class="modal-body">
+  <div class='alert alert-danger'>{{context.text}}</div>
+  <!-- <button class="btn btn-primary" type="button" ng-click="$close()">Réessayer</button> -->
+</div>
+
+<div class="modal-footer">
+  <button class="btn btn-link" ng-if="context.isLoginError" forgot><small>Mot de passe oublié ? </small></button>
+</div>

@@ -10,7 +10,7 @@ countdown.directive('countdown', ['$interval', '$timeout', function($interval, $
 
    return {
       restrict: 'E',
-      templateUrl: 'views/elements/countdown.html',
+      templateUrl: '/assets/elements/countdown.html',
       scope: {
         date: '=',
         finish: '&finish'

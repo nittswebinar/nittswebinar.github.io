@@ -1,0 +1,49 @@
+<div class="modal-header">
+    <button type="button" class="close" aria-label="Close" ng-click="$dismiss()"><span aria-hidden="true">&times;</span></button>
+    <h3 class="modal-title text-center">Une question ? Une remarque ? Une suggestion ? </h3>
+    <p class="text-center">Remplissez le formulaire puis envoyez votre message</p>
+</div>
+
+<div class="modal-body">
+
+  <div>
+
+    <form name="form" ng-submit="$close(contactMe)" role="form">
+        <!-- Email -->
+        <div class="form-group">
+            <div>
+                <label for="email">De : </label>
+                <input name="email" type="email" class="form-control" placeholder="A quelle adresse email peut-on vous répondre ?" ng-model="contactMe.sender.email" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+          <div>
+            <label for="type">En quoi consiste votre message ? </label>
+            <select class="form-control" name="type" ng-model="contactMe.type" ng-options="type for type in availableTypes"></select>
+          </div>
+        </div>
+
+        <!-- Object -->
+        <div class="form-group">
+            <div>
+              <label for="object">Sujet : </label>
+                  <input name="object" type="text" class="form-control" placeholder="De quoi voulez-vous parlez ?" ng-model="contactMe.object" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+          <div>
+            <label for="message">Message : </label>
+            <textarea name="message" rows="7" type="text" class="form-control" placeholder="Dites moi tout en détails..." ng-model="contactMe.message" required></textarea>
+          </div>
+        </div>
+
+        <div>
+          <button type="submit" class="btn btn-success btn-block">Envoyer</button>
+        </div>
+    </form>
+
+  </div>
+
+</div>

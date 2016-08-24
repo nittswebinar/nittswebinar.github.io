@@ -27,7 +27,7 @@ sessionButton.directive('login', ['$uibModal', 'Session', function($uibModal, Se
 			}
 			else {
 				$uibModal.open({
-					templateUrl: 'views/elements/ErrorModal.html',
+					templateUrl: '/assets/elements/ErrorModal.html',
 					controller: 'loginErrorController'
 				});
 			}
@@ -38,7 +38,7 @@ sessionButton.directive('login', ['$uibModal', 'Session', function($uibModal, Se
 
 			$uibModal.open({
 	      size: 'sm',
-	      templateUrl: 'views/elements/loginLightbox.html',
+	      templateUrl: '/assets/elements/loginLightbox.html',
 	      controller: 'loginController'
 	  	}).result.then(function (credentials) {
 	      // Login lightbox submitted => send login request
@@ -77,7 +77,7 @@ sessionButton.directive('register', ['$uibModal', 'Session', function($uibModal,
 			else {
 
 				$uibModal.open({
-					templateUrl: 'views/elements/ErrorModal.html',
+					templateUrl: '/assets/elements/ErrorModal.html',
 					controller: 'registerErrorController'
 				});
 			}
@@ -90,7 +90,7 @@ sessionButton.directive('register', ['$uibModal', 'Session', function($uibModal,
 			mixpanel.track("Click register button");
 
 			$uibModal.open({
-				templateUrl: 'views/elements/RegisterLightbox.html',
+				templateUrl: '/assets/elements/RegisterLightbox.html',
 				controller: 'loginController'
 			}).result.then(function (credentials) {
 
@@ -150,13 +150,13 @@ sessionButton.directive('forgot', ['$uibModal', 'Session', function($uibModal, S
 
 			element.bind("click", function() {
 				$uibModal.open({
-					templateUrl: 'views/elements/ForgotLightbox.html'
+					templateUrl: '/assets/elements/ForgotLightbox.html'
 					// controller: 'forgotController'
 				}).result.then(function (email) {
 					// Login lightbox submitted => send login request
 					Session.forgot(email, function(data) {
 						$uibModal.open({
-							templateUrl: 'views/elements/alertModal.html',
+							templateUrl: '/assets/elements/alertModal.html',
 							controller: 'forgotAlertController'
 						});
 					});

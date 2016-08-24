@@ -1,0 +1,19 @@
+<div class="modal-header">
+    <button type="button" class="close" aria-label="Close" ng-click="$dismiss()"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title text-center">Mot de passe oublié ?</h4>
+</div>
+
+<div class="modal-body">
+  <p>
+    Renseignez votre adresse email pour recevoir un lien de confirmation afin de choisir un nouveau mot de passe.
+  </p>
+  <br />
+  
+  <form name="forgotPassword" ng-submit="$close(email)" role="form">
+    <div class="form-group">
+      <input type="email" class="form-control" placeholder="Votre adresse email" ng-model="email" required />
+    </div>
+    <button class="btn btn-primary btn-block" type="submit">Envoyer</button>
+  </form>
+
+</div>

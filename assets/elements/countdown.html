@@ -1,0 +1,69 @@
+<div ng-if="ready">
+  <!-- for every viewports execpt xs (smartphones) -->
+  <div class="well hidden-xs">
+      <div class="row">
+          <div class="col-xs-3 text-center panel panel-default">
+              <div>
+                  <span class="h1">{{countdown.days}}</span>
+              </div>
+              <div class="small">
+                  <ng-pluralize count="countdown.days" when="{'0': 'JOUR', 'one': 'JOUR', 'other': 'JOURS'}"></ng-pluralize>
+              </div>
+          </div>
+
+          <div class="col-xs-3 text-center panel panel-default">
+              <div>
+                  <span class="h1">{{countdown.hours}}</span>
+              </div>
+              <div class="small">
+                  <ng-pluralize count="countdown.hours" when="{'0': 'HEURE', 'one': 'HEURE', 'other': 'HEURES'}"></ng-pluralize>
+              </div>
+          </div>
+
+          <div class="col-xs-3 text-center panel panel-default">
+              <div>
+                  <span class="h1">{{countdown.minutes}}</span>
+              </div>
+              <div class="small">
+                  <ng-pluralize count="countdown.minutes" when="{'0': 'MIN', 'one': 'MIN', 'other': 'MINS'}"></ng-pluralize>
+              </div>
+          </div>
+
+          <div class="col-xs-3 text-center panel panel-default">
+              <div>
+                  <span class="h1">{{countdown.seconds}}</span>
+              </div>
+              <div class="small">
+                  <ng-pluralize count="countdown.seconds" when="{'0': 'SEC', 'one': 'SEC', 'other': 'SECS'}"></ng-pluralize>
+              </div>
+          </div>
+      </div>
+  </div>
+
+
+  <!-- only for xs viewports (smartphones) -->
+  <div class="row visible-xs text-center">
+      <div class="col-xs-12">
+        <br />
+      </div>
+      <div class="col-xs-3 label label-default">
+          <div class="h3">{{countdown.days}}</div>
+          <small><ng-pluralize count="countdown.days" when="{'0': 'JOUR', 'one': 'JOUR', 'other': 'JOURS'}"></ng-pluralize></small>
+      </div>
+      <div class="col-xs-3 label label-default">
+          <div class="h3">{{countdown.hours}}</div>
+          <small><ng-pluralize count="countdown.hours" when="{'0': 'HEURE', 'one': 'HEURE', 'other': 'HEURES'}"></ng-pluralize></small>
+      </div>
+      <div class="col-xs-3 label label-default">
+          <div class="h3">{{countdown.minutes}}</div>
+          <small><ng-pluralize count="countdown.minutes" when="{'0': 'MIN', 'one': 'MIN', 'other': 'MINS'}"></ng-pluralize></small>
+      </div>
+      <div class="col-xs-3 label label-default">
+          <div class="h3">{{countdown.seconds}}</div>
+          <small><ng-pluralize count="countdown.seconds" when="{'0': 'SEC', 'one': 'SEC', 'other': 'SECS'}"></ng-pluralize></small>
+      </div>
+      <div class="col-xs-12">
+        <br />
+      </div>
+  </div>
+</div>

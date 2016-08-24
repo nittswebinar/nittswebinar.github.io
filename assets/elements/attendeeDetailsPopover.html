@@ -1,0 +1,16 @@
+<div>
+    <table class="table">
+        <tr>
+            <td>Prénom : </td><td>{{attendee.screenName}}</td>
+        </tr>
+        <tr>
+            <td>Email : </td><td>{{attendee.email}}</td>
+        </tr>
+    </table>
+    
+    <div class="text-center">
+        <span class="label label-success" ng-if="attendee.connected">Connecté</span>
+        <span class="label label-warning" ng-if="!attendee.connected">Déconnecté</span>
+    </div>
+<!--    <button type="button" class="btn btn-danger">Bannir ce participant</button>-->
+</div>
