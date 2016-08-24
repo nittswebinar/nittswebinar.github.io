@@ -6,6 +6,9 @@ var sessionService = angular.module('nittsAppSessions', ['ngCookies']);
 
 sessionService.service('Session', ['$http', '$cookies', function($http, $cookies) {
 
+  var API_URL = "https://nittswebinar.com"
+  var AUTH_URL = API_URL + "/auth"
+
   // get the session data from the local cookies storage
   var scopeData = {
     attendee: $cookies.getObject("attendee") || {},
@@ -32,7 +35,7 @@ sessionService.service('Session', ['$http', '$cookies', function($http, $cookies
   };
 
   this.login = function(credentials, callback) {
-    $http.post('/auth/local', {identifier: credentials.email, password: credentials.password}).then(function (res) {
+    $http.post(AUTH_URL + '/local', {identifier: credentials.email, password: credentials.password}).then(function (res) {
       // success response
       if (res.status == 200) {
         // success on server authentication
@@ -70,7 +73,7 @@ sessionService.service('Session', ['$http', '$cookies', function($http, $cookies
   };
 
   this.register = function(credentials, callback) {
-    $http.post('/auth/local/register', {identifier: credentials.email, password: credentials.password}).then(function (res) {
+    $http.post(AUTH_URL + '/local/register', {identifier: credentials.email, password: credentials.password}).then(function (res) {
       // success response
       if (res.status == 200) {
         // success on server authentication
@@ -106,7 +109,7 @@ sessionService.service('Session', ['$http', '$cookies', function($http, $cookies
 
   this.logout = function() {
     // send logout request to the api
-    $http.get('/logout').then(function(res) {
+    $http.get(API_URL + '/logout').then(function(res) {
       if (res.status == 200) {
         updateUserData();
       }
@@ -118,7 +121,7 @@ sessionService.service('Session', ['$http', '$cookies', function($http, $cookies
   };
 
   this.forgot = function(email, callback) {
-    $http.post('/auth/forgot', {email: email}).then(function (res) {
+    $http.post(AUTH_URL + '/forgot', {email: email}).then(function (res) {
       // success response
       // email send from the server
       callback(res.data);
@@ -146,7 +149,7 @@ sessionService.service('Session', ['$http', '$cookies', function($http, $cookies
     }
     // else, get user data from the api
     else {
-      $http.get('/user/' + userId).then(function(res) {
+      $http.get(API_URL + '/user/' + userId).then(function(res) {
         // if success, update the session locally
 
         updateUserCookie(res.data);
