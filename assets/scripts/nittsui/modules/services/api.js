@@ -55,29 +55,29 @@ apiService.provider('api', [function () {
 		};
 
 		this.patch = function(ressource, data, callback) {
-			$http.patch(apiPrefix + ressource, data).then(function(res) {
+			$http.patch(apiDomain + ressource, data).then(function(res) {
 				return callback(res.data);
 			}, errorHandler);
 		};
 		this.create = function(ressource, data, callback) {
-			$http.post(apiPrefix + ressource, data).then(function(res) {
+			$http.post(apiDomain + ressource, data).then(function(res) {
 				return callback(res.data);
 			}, errorHandler);
 			// TODO : _crsf
 		};
 		this.read = function(ressource, callback) {
-			$http.get(apiPrefix + ressource).then(function(res) {
+			$http.get(apiDomain + ressource).then(function(res) {
 				return callback(res.data);
 			}, errorHandler);
 		};
 		this.update = function(ressource, data, callback) {
-			$http.put(apiPrefix + ressource, data).then(function(res) {
+			$http.put(apiDomain + ressource, data).then(function(res) {
 				return callback(res.data);
 			}, errorHandler);
 			// TODO : _crsf
 		};
 		this.delete = function(ressource, callback) {
-			$http.delete(apiPrefix + ressource).then(function(res) {
+			$http.delete(apiDomain + ressource).then(function(res) {
 				return callback(res.data);
 			}, errorHandler);
 			// TODO : _crsf
