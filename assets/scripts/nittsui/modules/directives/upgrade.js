@@ -3,7 +3,7 @@
 *  nittsApp Payment directive
 */
 
-nittsUI.directive('payment', ['Session', 'api', '$state', '$uibModal', function(Session, api, $state, $uibModal) {
+nittsUI.directive('payment', ['Session', 'api', '$uibModal', function(Session, api, $uibModal) {
 
   return {
     restrict: 'A',
@@ -34,7 +34,6 @@ nittsUI.directive('payment', ['Session', 'api', '$state', '$uibModal', function(
                 "accountType": plan
               });
               mixpanel.people.track_charge(amount);
-              $state.go('main.user');
             });
           }
           else {
@@ -52,7 +51,6 @@ nittsUI.directive('payment', ['Session', 'api', '$state', '$uibModal', function(
                     "accountType": plan
                   });
                   mixpanel.people.track_charge(amount);
-                  $state.go('main.user');
                 });
               });
       	    });
