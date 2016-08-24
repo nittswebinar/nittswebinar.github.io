@@ -4,7 +4,7 @@
 
 var sessionService = angular.module('nittsAppSessions', ['ngCookies']);
 
-sessionService.service('Session', ['$http', '$state', '$cookies', function($http, $state, $cookies) {
+sessionService.service('Session', ['$http', '$cookies', function($http, $cookies) {
 
   // get the session data from the local cookies storage
   var scopeData = {
@@ -46,9 +46,7 @@ sessionService.service('Session', ['$http', '$state', '$cookies', function($http
         });
 
         scopeData.authenticated = true;
-        updateUserData(res.data.session.passport.user, function() {
-          $state.go('main.dashboard.plan');
-        });
+        updateUserData(res.data.session.passport.user, function() {});
 
         // this.retryLastRequest();
       }
@@ -87,9 +85,7 @@ sessionService.service('Session', ['$http', '$state', '$cookies', function($http
         });
 
         scopeData.authenticated = true;
-        updateUserData(res.data.session.passport.user, function() {
-          $state.go('main.dashboard.plan');
-        });
+        updateUserData(res.data.session.passport.user, function() {});
 
         // this.retryLastRequest();
       }
@@ -145,7 +141,7 @@ sessionService.service('Session', ['$http', '$state', '$cookies', function($http
     if (!userId) {
       updateUserCookie({});
       // redirect to the home
-      return $state.go('main.home');
+      return
       // TODO : open login modal
     }
     // else, get user data from the api
@@ -162,7 +158,7 @@ sessionService.service('Session', ['$http', '$state', '$cookies', function($http
           updateUserCookie({});
 
           // redirect to the home
-          return $state.go('main.home');
+          return
         }
       });
     }
@@ -172,19 +168,4 @@ sessionService.service('Session', ['$http', '$state', '$cookies', function($http
     scopeData.user = user;
     scopeData.authenticated = user.id ? true : false;
   }
-  // this.storeRequest = function(request) {
-  //   buffer = request;
-  // };
-  //
-  // this.retryLastRequest = function() {
-  //   function successCallback(response) {
-  //       buffer.deferred.resolve(response);
-  //   }
-  //
-  //   function errorCallback(response) {
-  //       buffer.deferred.reject(response);
-  //   }
-  //   $http(buffer.config).then(successCallback, errorCallback);
-  // };
-
 }]);
