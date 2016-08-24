@@ -38,7 +38,7 @@ nittsUI.directive('payment', ['Session', 'api', '$uibModal', function(Session, a
           }
           else {
             $uibModal.open({
-      	      templateUrl: '/assets/elements/passwordSet.html',
+      	      templateUrl: TEMPLATE_ELEMENTS_URL + '/passwordSet.html',
               backdrop: 'static',
               keyboard: false,
       	      controller: ['$scope', function($scope) {

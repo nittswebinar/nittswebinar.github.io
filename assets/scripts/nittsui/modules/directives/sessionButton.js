@@ -27,7 +27,7 @@ sessionButton.directive('login', ['$uibModal', 'Session', function($uibModal, Se
 			}
 			else {
 				$uibModal.open({
-					templateUrl: '/assets/elements/ErrorModal.html',
+					templateUrl: TEMPLATE_ELEMENTS_URL + '/ErrorModal.html',
 					controller: 'loginErrorController'
 				});
 			}
@@ -38,7 +38,7 @@ sessionButton.directive('login', ['$uibModal', 'Session', function($uibModal, Se
 
 			$uibModal.open({
 	      size: 'sm',
-	      templateUrl: '/assets/elements/loginLightbox.html',
+	      templateUrl: TEMPLATE_ELEMENTS_URL + '/loginLightbox.html',
 	      controller: 'loginController'
 	  	}).result.then(function (credentials) {
 	      // Login lightbox submitted => send login request
@@ -77,7 +77,7 @@ sessionButton.directive('register', ['$uibModal', 'Session', function($uibModal,
 			else {
 
 				$uibModal.open({
-					templateUrl: '/assets/elements/ErrorModal.html',
+					templateUrl: TEMPLATE_ELEMENTS_URL + '/ErrorModal.html',
 					controller: 'registerErrorController'
 				});
 			}
@@ -90,7 +90,7 @@ sessionButton.directive('register', ['$uibModal', 'Session', function($uibModal,
 			mixpanel.track("Click register button");
 
 			$uibModal.open({
-				templateUrl: '/assets/elements/RegisterLightbox.html',
+				templateUrl: TEMPLATE_ELEMENTS_URL + '/RegisterLightbox.html',
 				controller: 'loginController'
 			}).result.then(function (credentials) {
 
@@ -150,13 +150,13 @@ sessionButton.directive('forgot', ['$uibModal', 'Session', function($uibModal, S
 
 			element.bind("click", function() {
 				$uibModal.open({
-					templateUrl: '/assets/elements/ForgotLightbox.html'
+					templateUrl: TEMPLATE_ELEMENTS_URL + '/ForgotLightbox.html'
 					// controller: 'forgotController'
 				}).result.then(function (email) {
 					// Login lightbox submitted => send login request
 					Session.forgot(email, function(data) {
 						$uibModal.open({
-							templateUrl: '/assets/elements/alertModal.html',
+							templateUrl: TEMPLATE_ELEMENTS_URL + '/alertModal.html',
 							controller: 'forgotAlertController'
 						});
 					});
