@@ -1,7 +1,9 @@
-name: Blog de NITTS Webinar
+name: NITTS Webinar
 markdown: kramdown
 permalink: /blog/:title
 sass:
   style: compressed
 gems:
   - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-redirect-from

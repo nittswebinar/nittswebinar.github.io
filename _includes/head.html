@@ -1,12 +1,9 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="{{ page.description }}">
-	<meta name="author" content="Jeremy Hermelin">
 
 	<link rel="shortcut icon" href="/assets/img/ico/favicon.png">
 
-	<title>{{ page.title }} | NITTS Webinar</title>
 	<!-- styles -->
   <link rel="stylesheet" href="/assets/style/main.css">
 	<script src="https://use.fontawesome.com/1a5648b40b.js"></script>
@@ -20,6 +17,8 @@
 	<!-- google analytics - i will not share this data with google -->
 	{% include analytics.html %}
 
+	<!-- meta tags, title tag, and og tags -->
+	{% seo %}
 
-  <!-- <script src="script.js"></script> -->
+
 </head>
