@@ -80,6 +80,7 @@ aside {
 
 header {
     position: relative;
+    z-index: 110;
     width: 100%;
     min-height: auto;
     text-align: center;
@@ -323,6 +324,8 @@ body {
     text-align: center;
     color: white;
     font-weight: 600;
+    position: relative; top: 0; left: 0; right: 0; bottom: 0;
+    height: 100%; 
     // background: url(../img/banner-bg.jpg) no-repeat left center;
     // background: url(../img/header-default.jpg) no-repeat left center;
     // background-size: cover;
@@ -338,10 +341,20 @@ video#bgvid {
   overflow: hidden;
 }
 
+#bgfilter {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    width: 100%; z-index: 100;
+    background: rgba(0, 0, 0, 0.2);
+    // background-size: cover;
+    box-shadow: 0 0 30px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
 .intro-message {
     position: relative;
     padding-top: 7%;
     padding-bottom: 33%;
+    z-index: 110;
 }
 
 .intro-message > h1 {

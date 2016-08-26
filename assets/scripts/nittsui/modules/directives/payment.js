@@ -16,7 +16,7 @@ nittsUI.directive('payment', ['Session', 'api', '$uibModal', function(Session, a
 
       var handler = StripeCheckout.configure({
         key: 'pk_live_L0hv8z2NpOM5cT1CCoYMVI1l',
-        image: '/images/800x800-logo.png',
+        image: '/assets/img/800x800-logo.png',
         name: 'NITTS Webinar',
         description: 'Abonnement Premium',
         panelLabel: 'Souscrire pour {{amount}}',
@@ -30,10 +30,6 @@ nittsUI.directive('payment', ['Session', 'api', '$uibModal', function(Session, a
           mixpanel.track("Credit Card data validated for" + plan);
           if (Session.isAuthorized()) {
             api.create('user/upgrade', {stripeToken: token.id, amount: amount, plan: plan}, function(data) {
-              mixpanel.people.set({
-                "accountType": plan
-              });
-              mixpanel.people.track_charge(amount);
             });
           }
           else {
@@ -47,10 +43,6 @@ nittsUI.directive('payment', ['Session', 'api', '$uibModal', function(Session, a
       	  	}).result.then(function (credentials) {
       	      Session.register({email: token.email, password: credentials.password}, function(status) {
                 api.create('user/upgrade', {stripeToken: token.id, amount: amount, plan: plan}, function(data) {
-                  mixpanel.people.set({
-                    "accountType": plan
-                  });
-                  mixpanel.people.track_charge(amount);
                 });
               });
       	    });
@@ -61,8 +53,6 @@ nittsUI.directive('payment', ['Session', 'api', '$uibModal', function(Session, a
 
       element.bind('click', function() {
         //track the payment funnel step 2
-        mixpanel.track("Click Subscribe button for" + plan);
-
         handler.open({
           amount: amount * 100
         });
