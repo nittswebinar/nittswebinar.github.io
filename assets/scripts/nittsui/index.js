@@ -8,7 +8,7 @@
  */
 
 'use strict';
-var HOST_URL = "https://nittswebinar.github.io"
+var HOST_URL = location.protocol + '//' + location.host; 
 var TEMPLATE_ELEMENTS_URL = HOST_URL + "/assets/elements";
 
 // Declaration of the main nittsApp module
