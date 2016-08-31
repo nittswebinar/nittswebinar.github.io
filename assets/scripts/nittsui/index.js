@@ -8,7 +8,7 @@
  */
 
 'use strict';
-var HOST_URL = location.protocol + '//' + location.host; 
+var HOST_URL = location.protocol + '//' + location.host;
 var TEMPLATE_ELEMENTS_URL = HOST_URL + "/assets/elements";
 
 // Declaration of the main nittsApp module
@@ -25,12 +25,17 @@ var nittsUI = angular.module('nittsUI', [
 ]);
 
 
-nittsUI.run(['amMoment', 'editableOptions', 'editableThemes', function(amMoment, editableOptions, editableThemes) {
+nittsUI.run(['amMoment', 'editableOptions', 'editableThemes', '$rootScope', 'Session', 'alerts', function(amMoment, editableOptions, editableThemes, $rootScope, Session, alerts) {
   // amMoment configuration for french only
   amMoment.changeLocale('fr');
 
   // editableThemes.bs3.inputClass = 'input-sm';
   editableThemes.bs3.buttonsClass = 'btn-sm';
   editableOptions.theme = 'bs3';
+
+  // Atach global services to the rootScope to make them available directly in the views
+  $rootScope.session = Session;
+
+  $rootScope.alerts = alerts;
 
 }]);

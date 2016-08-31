@@ -38,7 +38,7 @@ contactMe.directive('contactMe', ['api', '$uibModal', 'Session', 'alerts', funct
             name: ''
           };
 
-          if (sessionData.authenticated) {
+          if (sessionData.user) {
             sender = sessionData.user;
             sender.type = 'user';
           }

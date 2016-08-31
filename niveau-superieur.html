@@ -44,8 +44,8 @@ title: "Passez au niveau supérieur !"
                   <p class="text-center">
                     Inscription gratuite immédiate :
                   </p>
-                  <button ng-if="!session.authenticated" class="btn btn-default btn-lg btn-block" register>Inscription</button>
-                  <button ng-if="session.authenticated" class="btn btn-default btn-lg btn-block" disabled="disabled">Déjà inscrit</button>
+                  <button ng-if="!session.isAuthenticated()" class="btn btn-default btn-lg btn-block" register>Inscription</button>
+                  <button ng-if="session.isAuthenticated()" class="btn btn-default btn-lg btn-block" disabled="disabled">Déjà inscrit</button>
                 </td>
               </tr>
             </table>
@@ -77,8 +77,8 @@ title: "Passez au niveau supérieur !"
                   <p class="text-center">
                     Passez tout de suite au niveau supérieur :
                   </p>
-                  <button ng-if="session.user.accountType != 'premium'" class="btn btn-success btn-lg btn-block" payment amount="29" membership="premium"><i class="fa fa-rocket fa-lg" aria-hidden="true"></i> Plan Premium !</button>
-                  <button ng-if="session.user.accountType == 'premium'" class="btn btn-success btn-lg btn-block" disabled="disabled"><i class="fa fa-rocket fa-lg" aria-hidden="true"></i> Déjà membre premium</button>
+                  <button ng-if="session.getUser().accountType != 'premium'" class="btn btn-success btn-lg btn-block" payment amount="29" membership="premium"><i class="fa fa-rocket fa-lg" aria-hidden="true"></i> Plan Premium !</button>
+                  <button ng-if="session.getUser().accountType == 'premium'" class="btn btn-success btn-lg btn-block" disabled="disabled"><i class="fa fa-rocket fa-lg" aria-hidden="true"></i> Déjà membre premium</button>
                 </td>
               </tr>
             </table>

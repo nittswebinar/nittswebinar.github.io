@@ -22,6 +22,13 @@ apiService.provider('api', [function () {
 
 	var api = function($http, Session, alerts) {
 
+		this.setAuthAccessToken = function() {
+			$http.defaults.headers.common.Authorization = 'Bearer ' + Session.getAccessToken();
+		};
+
+		// set the headers at init
+		this.setAuthAccessToken();
+
 		var errorHandler = function(response) {
 			// catch http errors and return a boolean
 			var st = response.status || response.statusCode;
@@ -66,7 +73,10 @@ apiService.provider('api', [function () {
 			// TODO : _crsf
 		};
 		this.read = function(ressource, callback) {
-			$http.get(apiDomain + ressource).then(function(res) {
+			$http({
+				method: 'GET',
+				url: apiDomain + ressource
+			}).then(function(res) {
 				return callback(res.data);
 			}, errorHandler);
 		};

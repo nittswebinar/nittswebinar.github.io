@@ -28,7 +28,7 @@ nittsUI.directive('payment', ['Session', 'api', '$uibModal', function(Session, a
         token: function(token) {
           // track the payment funnel step 3 => card data sent
           mixpanel.track("Credit Card data validated for" + plan);
-          if (Session.isAuthorized()) {
+          if (Session.isAuthenticated()) {
             api.create('user/upgrade', {stripeToken: token.id, amount: amount, plan: plan}, function(data) {
             });
           }
