@@ -1,0 +1,66 @@
+<div>
+  <h3 class="text-center">Détails du webinaire</h3>
+</div>
+
+
+<div class="panel panel-default">
+
+  <div class="panel-body">
+    <div class="col-md-12">
+      <div class="col-md-6">
+        <h3 class="text-center">{{event.webinar.name}}</h3>
+        <table class="table">
+          <tr>
+            <td>
+              <b>Planifié</b>
+            </td>
+            <td>
+              {{event.date | amDateFormat:'dddd Do MMMM YYYY à H[h]mm'}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <b>Titre</b>
+            </td>
+            <td>
+              {{event.webinar.title}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <b>Description</b>
+            </td>
+            <td>
+              {{event.webinar.description}}
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-md-6">
+        <countdown date="event.date" finish="countdownFinished()"></countdown>
+      </div>
+      <div class="col-md-12">
+        <p>Invitez votre audience à s'inscrire au webinaire en partageant le lien suivant : </p>
+        <div class="input-group hidden-xs">
+          <span class="input-group-addon hidden-sm">Lien d'inscription</span>
+          <input type="text" class="form-control" readonly="readonly" value="{{registerToEventLink}}" onclick="this.select()"/>
+          <span class="input-group-addon"><a target="_blank" ui-sref="viewer.register({id: event.id})">Voir la landing page</a></span>
+        </div>
+        <input type="text" class="form-control input-sm visible-xs" readonly="readonly" value="{{registerToEventLink}}" onclick="this.select()"/>
+        <br />
+      </div>
+
+      <div class="col-md-12" ng-controller="ProgressBarController">
+          <uib-progressbar value="progressBar.value" type="{{progressBar.type}}"><span class="hidden-xs">{{progressBar.status}}</span></uib-progressbar>
+          <p class="text-center visible-xs"><span class="label label-info">{{progressBar.status}}</span></p>
+        </event-progress-bar>
+      </div>
+    </div>
+
+    <div class="col-md-12 text-center">
+        <a ui-sref="live({id: event.id})" class="btn btn-warning">Gérer le webinaire</a>
+        <button class="btn btn-danger" ng-click="deleteEvent(event.id)"><i class="fa fa-trash-o" aria-hidden="true"></i> <span class="hidden-xs">Supprimer</span></button>
+        <a ui-sref="dashboard.modify({id: event.id})" class="btn btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i> <span class="hidden-xs">Modifier</span></a>
+    </div>
+  </div>
+</div>

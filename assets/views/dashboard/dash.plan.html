@@ -1,0 +1,67 @@
+<div>
+    <h3 class="text-center">Planifier une conférence</h3>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <form class="form-horizontal" ng-submit="createWebinar()">
+            <!-- Name -->
+            <div class="form-group">
+                <label for="inputName" class="col-sm-2 control-label">Nom du webinaire</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputName" aria-describedby="helpInputName" placeholder="Ex : Lancement produit" ng-model="webinar.name" required>
+                    <span id="helpInputName" class="help-block">Pour vous uniquement. Les participants ne le verront pas. </span>
+                </div>
+            </div>
+
+            <!-- Date and time -->
+            <div class="form-group">
+                <label for="inputDate" class="col-sm-2 control-label">Date et heure du webinaire</label>
+                <div class="col-md-5">
+                    <div id="inputDate" class="input-group">
+                      <input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="event.date" is-open="status.opened" min-date="minDate" ng-required="true" current-text="Aujourd'hui" clear-text="Effacer" close-text="Fermer" />
+                      <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
+                      </span>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <uib-timepicker ng-model="event.date" show-meridian="false" show-spinners="false"></uib-timepicker>
+                </div>
+            </div>
+
+            <!-- Title -->
+            <div class="form-group">
+                <label for="inputTitle" class="col-sm-2 control-label">Titre du webinaire</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputTitle" aria-describedby="helpInputTitle" placeholder="Ex : Les secrets du pissenlit" ng-model="webinar.title" required>
+                    <span id="helpInputTitle" class="help-block">Publique pour les participants</span>
+                </div>
+            </div>
+
+            <!-- Description -->
+            <div class="form-group">
+                <label for="inputDescription" class="col-sm-2 control-label">Description du webinaire</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputDescription" aria-describedby="helpInputDescription" placeholder="Ex : 20 utilisations du pissenlit dans la vie de tous les jours. Et plein d'autres infos." ng-model="webinar.description">
+                    <span id="helpInputDescription" class="help-block">Publique pour les participants</span>
+                </div>
+            </div>
+
+            <!-- Sgautorepondeur link -->
+            <!-- <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" ng-model="webinar.sgautorepondeurRegistration"/> Inscrire les participants sur votre liste SG-Autorépondeur
+                  </label>
+                </div>
+              </div>
+            </div> -->
+
+            <div class="text-center">
+              <button type="submit" class="btn btn-success">Planifier ce webinaire</button>
+            </div>
+        </form>
+    </div>
+</div>

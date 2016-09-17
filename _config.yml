@@ -1,4 +1,5 @@
 name: NITTS Webinar
+url: http://localhost:4000
 markdown: kramdown
 permalink: /blog/:title
 sass:

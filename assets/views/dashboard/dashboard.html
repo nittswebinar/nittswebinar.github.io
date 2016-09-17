@@ -1,0 +1,64 @@
+<!--Dashboard-->
+<div><br/></div>
+
+<!--nav tabs-->
+<!-- <div class="container">
+    <ul class="nav nav-tabs nav-justified">
+        <li role="presentation" ng-class="{'active': activeTab == 1}">
+            <a ui-sref="dashboard.conf">
+                <i class="fa fa-youtube-play"></i> Conférences
+            </a>
+        </li>
+        <li role="presentation" ng-class="{'active': activeTab == 2}">
+            <a ui-sref="dashboard.stats">
+                <i class="fa fa-bar-chart"></i> Statistiques
+            </a>
+        </li>
+        <li role="presentation" ng-class="{'active': activeTab == 3}">
+            <a ui-sref="dashboard.plan">
+                <i class="fa fa-calendar"></i> Planifier
+            </a>
+        </li>
+        <li role="presentation" ng-class="{'active': activeTab == 4}">
+            <a ui-sref="dashboard.settings">
+                <i class="fa fa-cogs"></i> Réglages
+            </a>
+        </li>
+    </ul>
+</div> -->
+<!--nav tabs-->
+<div class="container-fluid">
+  <div>
+      <div class="row">
+
+          <div class="col-md-3">
+              <div class="list-group">
+                  <div class="list-group-item disabled">
+                      <h4 class="list-group-item-heading">Evènements planifiés</h4>
+                  </div>
+
+                  <a class="list-group-item" ui-sref="dashboard.conf({id: event.id})" ng-repeat="event in events">
+                    <h4 class="list-group-item-heading"><i class="fa fa-youtube-play"></i> {{event.webinar.name}}</h4>
+                    <p class="list-group-item-text">{{event.date | amCalendar}}</p>
+                  </a>
+
+              </div>
+              <div class="text-center">
+
+                  <a class="btn btn-success" ui-sref="dashboard.plan">
+                    <h5><i class="fa fa-calendar-plus-o fa-lg"></i> Nouveau webinaire</h5>
+                  </a>
+
+              </div>
+          </div>
+
+
+          <div class="col-md-9">
+            <div ui-view></div>
+          </div>
+
+      </div>
+  </div>
+</div>
+<!--Dashboard-->
+<div><br/></div>

@@ -1,0 +1,39 @@
+<div class="container">
+  <br />
+  <div class="row">
+    <div class="text-center">
+      <h2>Mon compte</h2>
+    </div>
+    <br />
+    <div class="row">
+
+      <!-- Tab selection -->
+      <aside class="col-md-4">
+        <div class="panel panel-default">
+          <ul class="list-group">
+            <li class="list-group-item">
+              <a ui-sref="user.infos"><h4>Infos personnelles</h4></a>
+            </li>
+            <li class="list-group-item">
+              <a ui-sref="user.affiliation"><h4>Programme d'affilliation</h4></a>
+            </li>
+            <!-- <li class="list-group-item">
+              <a ui-sref="user.autoresponder"><h4>Intégration autorépondeur</h4></a>
+            </li> -->
+          </ul>
+        </div>
+      </aside>
+
+      <!-- Choosen settings page  -->
+      <section class="col-md-8">
+        <ui-view>Chargement...</ui-view>
+      </section>
+
+
+    </div>
+  </div>
+
+  <br />
+  <br />
+  <br />
+</div>

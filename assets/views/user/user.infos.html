@@ -1,0 +1,119 @@
+
+  <div class="row">
+    <div class="col-sm-offset-3 col-sm-3 col-xs-offset-1 col-xs-5">
+      <div class="panel" ng-class="{'panel-success': user.accountType == 'free', 'panel-default': user.accountType != 'free'}">
+        <div class="panel-body text-center" ng-class="{'text-success bg-success': user.accountType == 'free', 'text-muted': user.accountType != 'free'}">
+          <div class="col-xs-12">
+            <i class="fa fa-paper-plane fa-4x" aria-hidden="true"></i>
+          </div>
+          <div class="col-xs-12 text-center">
+            Plan gratuit
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3 col-xs-5">
+      <div class="panel" ng-class="{'panel-success': user.accountType == 'premium', 'panel-default': user.accountType != 'premium'}">
+        <div class="panel-body text-center" ng-class="{'text-success bg-success': user.accountType == 'premium', 'text-muted': user.accountType != 'premium'}">
+          <div class="col-xs-12">
+            <i class="fa fa-rocket fa-4x" aria-hidden="true"></i>
+          </div>
+          <div class="col-xs-12 text-center">
+            Plan premium
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="">
+      <div class="">
+        <table class="table">
+          <tr ng-mouseenter="showEditButton.username = true" ng-mouseleave="showEditButton.username = false">
+            <td>
+              <div class="col-sm-5 col-xs-12">
+                <p>
+                  <b>Nom d'utilisateur</b>
+                  <br />
+                  <small class="text-muted">Ce nom apparait publiquement</small>
+                </p>
+              </div>
+              <div class="col-sm-7 col-xs12">
+                <span editable-text="user.username" e-placeholder="Votre nom d'utilisateur" e-style="width: 250px" e-form="usernameForm" onbeforesave="updateUser($data, 'username')">{{user.username || ""}}</span>
+                <a href="" role="button" ng-click="usernameForm.$show()" ng-hide="usernameForm.$visible || !showEditButton.username"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+              </div>
+            </td>
+          </tr>
+          <tr ng-mouseenter="showEditButton.email = true" ng-mouseleave="showEditButton.email = false">
+            <td>
+              <div class="col-sm-5 col-xs-12">
+                <p>
+                  <b>Adresse email</b>
+                </p>
+              </div>
+              <div class="col-sm-7 col-xs-12">
+                <span editable-email="user.email" e-placeholder="Votre adresse email" e-style="width: 250px" e-form="emailForm" onbeforesave="updateUser($data, 'email')">{{user.email || ""}}</span>
+                <a href="" role="button" ng-click="emailForm.$show()" ng-hide="emailForm.$visible || !showEditButton.email"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+              </div>
+            </td>
+          </tr>
+          <tr ng-mouseenter="showEditButton.firstName = true" ng-mouseleave="showEditButton.firstName = false">
+            <td>
+              <div class="col-sm-5 col-xs-12">
+                <p>
+                  <b>Prénom</b>
+                </p>
+              </div>
+              <div class="col-sm-7 col-xs-12">
+                <span editable-text="user.firstName" e-placeholder="Votre prénom" e-style="width: 250px" e-form="firstNameForm" onaftersave="updateUser($data, 'firstName')">{{user.firstName || ""}}</span>
+                <a href="" role="button" ng-click="firstNameForm.$show()" ng-hide="firstNameForm.$visible || !showEditButton.firstName"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+              </div>
+            </td>
+          </tr>
+          <tr ng-mouseenter="showEditButton.lastName = true" ng-mouseleave="showEditButton.lastName = false">
+            <td>
+              <div class="col-sm-5 col-xs-12">
+                <p>
+                  <b>Nom</b>
+                </p>
+              </div>
+              <div class="col-sm-7 col-xs-12">
+                <span editable-text="user.lastName" e-placeholder="Votre nom" e-style="width: 250px" e-form="lastNameForm" onaftersave="updateUser($data, 'lastName')">{{user.lastName || ""}}</span>
+                <a href="" role="button" ng-click="lastNameForm.$show()" ng-hide="lastNameForm.$visible || !showEditButton.lastName"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+              </div>
+            </td>
+          </tr>
+          <!-- <tr ng-mouseenter="showEditButton.sgautorepondeur = true" ng-mouseleave="showEditButton.sgautorepondeur = false">
+            <td>
+              <div class="col-sm-5 col-xs-12">
+                <p>
+                  <b>Compte SG-Autorépondeur</b>
+                </p>
+              </div>
+              <div class="col-sm-7 col-xs-12">
+                n° de compte : <span editable-text="user.sgautorepondeurAccount" e-placeholder="Votre n° de compte SG-Autorépondeur" e-style="width: 200px" e-form="sgautorepondeurAccountForm" onaftersave="updateUser($data, 'sgautorepondeurAccount')">{{user.sgautorepondeurAccount || ""}}</span>
+                <a href="" role="button" ng-click="sgautorepondeurAccountForm.$show()" ng-hide="sgautorepondeurAccountForm.$visible || !showEditButton.sgautorepondeur"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                <hr />
+                n° de liste : <span editable-text="user.sgautorepondeurList" e-placeholder="Votre n° de liste SG-Autorépondeur" e-style="width: 200px" e-form="sgautorepondeurListForm" onaftersave="updateUser($data, 'sgautorepondeurList')">{{user.sgautorepondeurList || ""}}</span>
+                <a href="" role="button" ng-click="sgautorepondeurListForm.$show()" ng-hide="sgautorepondeurListForm.$visible || !showEditButton.sgautorepondeur"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+              </div>
+            </td>
+          </tr> -->
+          <tr>
+            <td>
+              <div class="col-sm-5 col-xs-12">
+                <p>
+                  <b>Mot de passe</b>
+                </p>
+              </div>
+              <div class="col-sm-7 col-xs-12">
+                <a role="button" forgot>Réinitialiser le mot de passe</a>
+              </div>
+            </td>
+          </tr>
+        </table>
+
+      </div>
+    </div>
+  </div>

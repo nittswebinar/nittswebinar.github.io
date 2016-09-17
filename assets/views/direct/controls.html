@@ -1,0 +1,250 @@
+<br/>
+<div class="container-fluid">
+<!--Controls dashboard-->
+<div class="col-lg-3 col-md-4 col-sm-5">
+  <div class="text-center">
+    <a ui-sref="dashboard.conf({id: event.id})"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour au tableau de bord</a>
+  </div>
+  </br>
+  <div class="well" ng-if="event.webinar.name">
+      <h4>{{event.webinar.name}}</h4>
+      <p><b>{{event.date | amDateFormat:'dddd Do MMMM YYYY à H[h]mm'}}</b></p>
+      <p><b>Titre : </b>{{event.webinar.title}}</p>
+      <p><b>Description : </b>{{event.webinar.description}}</p>
+
+      <br />
+      <div class="text-center">
+        <div ng-show="event.status == 'planned' || event.status == 'waiting' || hangoutButtonDisplayed">
+          <ghangout event="{{event.id}}" token="{{hangoutToken}}" title="{{event.webinar.title}}">Lancer le Hangout en direct</ghangout>
+        </div>
+        <div class="" ng-if="event.status == 'planned'">
+          <b>Votre conférence commence dans : </b>
+        </div>
+        <div class="alert alert-danger" ng-if="event.status == 'waiting'">
+          <div>
+            <i class="fa fa-arrow-up fa-4x" aria-hidden="true"></i>
+          </div>
+          <div>
+            <b>Vos participants vous attendent pour commencer la conférence</b>
+          </div>
+        </div>
+        <div class="alert alert-warning" ng-if="event.status == 'inProgress'">
+          Session hangout en cours...
+        </div>
+        <div class="alert alert-success" ng-if="event.status == 'broadcasting'">
+          Diffusion en cours...
+        </div>
+        <div class="alert alert-info" ng-if="event.status == 'finished'" ng-hide="hangoutButtonDisplayed">
+          <p>
+            <b>Webinaire enregistré</b>
+          </p>
+          <br />
+          <div>
+            <button class="btn btn-default" ng-click="activateReplay()">Activer le replay</button>
+          </div>
+          <p>
+            ou
+          </p>
+          <div>
+            <button class="btn btn-danger" ng-click="displayHangoutButton()">Refaire l'enregistrement</button>
+          </div>
+          <br />
+        </div>
+        <div class="alert alert-success" ng-if="event.status == 'replaying'">
+          Replay disponible
+        </div>
+      </div>
+      <countdown date="event.date" finish="countdownFinished()"></countdown>
+  </div>
+
+</div>
+
+<div class="col-lg-9 col-md-8 col-sm-7" ng-controller="ChatController">
+    <uib-tabset justified="true">
+        <uib-tab select="">
+            <uib-tab-heading>
+              <i class="fa fa-users"></i> Participants <span class="badge">{{attendees.length}}</span>
+            </uib-tab-heading>
+            <div style="min-height: 530px; ">
+                <h3 class="h4 text-center">Gérer les participants</h3>
+                <div class="panel panel-default" ng-if="!attendees[0]">
+                  <div class="panel-body">
+                    <p>Il n'y a pour le moment encore aucun participant inscrit pour ce webinaire. </p>
+                    <p>Faites connaître l'évènement à votre audience, et invitez-les à venir y participer</p>
+                  </div>
+                </div>
+
+                <div class="panel panel-default" ng-if="attendees[0]">
+<!--
+                    <div class="panel panel-heading">
+                        <div>
+                            <form class="form-inline" role="search">
+                              <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Filtrer" list="attendees" ng-model="searchTerm" typeahead="attendee.screenName for attendee in attendees | filter: $viewValue">
+                              </div>
+                            </form>
+                        </div>
+                    </div>
+-->
+                    <div class="panel-body">
+                      <!--attendees-->
+                      <ul class="list-inline">
+                          <li ng-repeat="attendee in attendees">
+                              <a type="button" uib-tooltip="{{attendee.email}}" uib-popover-template="attendeeDetailsTemplateUrl" popover-placement="bottom" class="label" ng-class="{'label-success': attendee.connected, 'label-warning': !attendee.connected}">
+                                  <i class="fa fa-user"></i> {{attendee.screenName}}
+                              </a>
+                          </li>
+                      </ul>
+                      <!--attendees-->
+                    </div>
+                </div>
+
+                <div class="col-md-offset-1 col-md-10">
+                  <p><small>Pour inviter votre audience à s'inscrire à votre webinaire, partagez le lien suivant : </small></p>
+                  <div class="input-group hidden-xs">
+                      <span class="input-group-addon hidden-sm">Lien d'accès participants</span>
+                      <input type="text" class="form-control" readonly="readonly" value="{{registerToEventLink}}" onclick="this.select()"/>
+                      <span class="input-group-addon"><a target="_blank" ui-sref="viewer.register({id: event.id})">Voir la landing page</a></span>
+                  </div>
+                  <div class="visible-xs">
+                    <input type="text" class="form-control" readonly="readonly" value="{{registerToEventLink}}" onclick="this.select()"/>
+                  </div>
+                </br>
+                </div>
+            </div>
+        </uib-tab>
+
+        <uib-tab select="">
+            <uib-tab-heading>
+                <i class="fa fa-comments-o"></i> Messages <span class="badge">{{chat.messages.length}}</span>
+            </uib-tab-heading>
+
+            <div style="min-height: 530px; ">
+                <h3 class="h4 text-center">Chat en direct</h3>
+
+                <!--chat part-->
+                <div class="panel panel-default" >
+
+                  <!--messages display-->
+                  <ul class="list-group" style="height: 490px; overflow: auto; ">
+                    <li class="list-group-item" ng-repeat="message in chat.messages" ng-class="{'list-group-item-danger': message.local}">
+                      <div class="row">
+                        <div uib-dropdown is-open="message.dropdownOpen" class="pull-left">
+                          <i class="fa fa-spinner fa-pulse fa-fw" ng-if="message.inProgress"></i>
+                          <button type="button" class="btn btn-link" uib-dropdown-toggle ng-hide="message.inProgress"><i class="fa fa-cog" aria-hidden="true"></i></button>
+                          <ul class="dropdown-menu" uib-dropdown-menu role="menu">
+                            <li role="menuitem" ng-click="removeMessage(message)">
+                              <a href="#">Supprimer</a>
+                            </li>
+                            <li role="menuitem" ng-click="contentMessageForm.$show()">
+                              <a href="#">Modifier</a>
+                            </li>
+                          </ul>
+                        </div>
+                        <div class="col-xs-3 col-sm-1">
+                          <span class="label label-primary" ng-if="!message.fromMaster">{{message.emmiter.screenName}}</span>
+                          <span class="label label-danger" ng-if="message.fromMaster">admin</span>
+                        </div>
+                        <div class="col-xs-9 col-sm-11">
+                          <span editable-text="message.content" e-form="contentMessageForm" onaftersave="updateMessage(message)">{{message.content}}</span> - <span class="small text-muted" am-time-ago="message.createdAt"></span>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                  <!--messages display-->
+
+                  <!--chat form-->
+                  <div class="panel-footer">
+                    <form class="form-block" ng-submit="addMessage()">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-lg" ng-class="{'fa-pulse fa-spinner': sending, 'fa-comment': !sending}"></i></span>
+                        <input type="text" class="form-control" ng-model="chat.newMessage">
+                        <span class="input-group-btn"><input type="submit" class="btn btn-primary" value="Envoyer"></span>
+                      </div>
+                    </form>
+                  </div>
+                  <!--chat form-->
+
+                </div>
+                <!--chat part-->
+
+
+            </div>
+        </uib-tab>
+
+        <uib-tab select="">
+            <uib-tab-heading>
+                <i class="fa fa-money"></i> Marketing
+            </uib-tab-heading>
+            <div style="min-height: 530px; ">
+                <h3 class="h4 text-center">Envoyer un lien</h3>
+                <div class="panel panel-default" ng-controller="LinkController">
+
+                  <div class="panel-body">
+                    <uib-accordion>
+                      <uib-accordion-group ng-repeat="link in links">
+                        <uib-accordion-heading>
+                          {{link.title}} <small> - {{link.url}}</small>
+                        </uib-accordion-heading>
+                        <div class="">
+                          <a href="{{link.url}}" target="_blank" class="btn btn-default btn-lg">{{link.CallToAction}}</a>
+                          <br/>
+                          <br/>
+                          <button class="btn btn-warning" ng-click="shareLink(link)">Partager le lien en direct</button>
+                          <button class="btn btn-danger" ng-click="deleteLink(link.id)"><i class="fa fa-trash-o" aria-hidden="true"></i> <span class="hidden-xs">Supprimer</span></button>
+                          <button class="btn btn-primary" ng-click="modifyLink(link)"><i class="fa fa-pencil" aria-hidden="true"></i> <span class="hidden-xs">Modifier</span></button>
+                        </div>
+                      </uib-accordion-group>
+                    </uib-accordion>
+
+                    <div class="text-center">
+                      <button class="btn btn-success" ng-hide="linkCreation" ng-click="createLink()"><i class="fa fa-plus"></i> Ajouter un lien</button>
+                    </div>
+
+                    <div ng-if="linkCreation" class="panel panel-default">
+
+                      <div class="panel-body">
+                        <form class="form-horizontal" ng-submit="synchroniseLink()">
+
+                          <div class="form-group">
+                            <label for="inputLinkTitle" class="col-sm-2 control-label">Titre du lien</label>
+                            <div class="col-sm-10">
+                              <input type="text" class="form-control" id="inputlinkTitle" aria-describedby="helpInputlinkTitle" placeholder="Ex : Offre produit #1" ng-model="newLink.title" required>
+                              <span id="helpInputlinkTitle" class="help-block">Pour vous uniquement. Les participants ne le verront pas. </span>
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label for="inputLinkUrl" class="col-sm-2 control-label">Url du lien</label>
+                            <div class="col-sm-10">
+                              <input type="url" class="form-control" id="inputlinkUrl" aria-describedby="helpInputlinkUrl" placeholder="Ex : http://google.com" ng-model="newLink.url" required>
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label for="inputLinkCallToAction" class="col-sm-2 control-label">Appel à l'action</label>
+                            <div class="col-sm-10">
+                              <input type="text" class="form-control" id="inputlinkCallToAction" aria-describedby="helpInputlinkCallToAction" placeholder="Ex : Accédez immédiatement à l'offre" ng-model="newLink.CallToAction" required>
+                              <span id="helpInputlinkCallToAction" class="help-block">Ce que les participants verront. </span>
+                            </div>
+                          </div>
+
+                          <div class="text-center">
+                            <button type="submit" class="btn btn-success">Valider</button>
+                            <button type="button" ng-click="hideLinkCreation()" class="btn btn-danger">Annuler</button>
+                          </div>
+
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+            </div>
+        </uib-tab>
+
+    </uib-tabset>
+</div>
+
+<!--Control dashboard-->
+</div>

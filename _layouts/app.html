@@ -3,21 +3,24 @@ title: NITTS Webinar
 ---
 
 <!DOCTYPE html>
-<html lang="fr" ng-app="nittsUI" ng-strict-di>
+<html lang="fr" ng-app="nittsApp" ng-strict-di>
 
-{% include head.html %}
+  {% include head.html %}
 
   <body>
     <alert-display></alert-display>
     {% include navbar.html %}
 
     <!-- page content -->
-    {{ content }}
+    <div class="container">
+      {{ content }}
+    </div><!-- /.container -->
 
 
     {% include footer.html %}
 
     {% include scripts.html %}
+    {% include nittsapp.html %}
 
   </body>
 </html>

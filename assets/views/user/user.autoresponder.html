@@ -1,0 +1,73 @@
+
+<div class="row">
+  <div class="">
+    <div class="">
+      <table class="table">
+        <tr>
+          <td>
+            <div class="col-sm-4 col-xs-6">
+              Autorépondeur
+            </div>
+            <div class="col-sm-8 col-xs-6">
+              <select class="form-control" name="autoresponder" ng-model="user.autoresponderIntegration.type">
+                <option>SG-Autorépondeur</option>
+                <option>Autre</option>
+                <!-- <option></option> -->
+              </select>
+            </div>
+          </td>
+        </tr>
+        <tr ng-switch="user.autoresponderIntegration.type">
+          <td ng-switch-when="SG-Autorépondeur">
+            <div class="col-sm-12 col-xs-12" ng-mouseenter="showEditButton.sgautorepondeur = true" ng-mouseleave="showEditButton.sgautorepondeur = false">
+              code d'activation
+              <span class="walkthrough"><span uib-popover-html="'<div class=\'\'><img class=\'img-responsive\' src=\'/images/walkthroughs/code-activation-sgar.png\' /></div>'"
+              popover-placement="bottom"
+              popover-trigger="mouseenter"><i class="fa fa-question" aria-hidden="true"></i></span></span>
+               : <span editable-text="user.autoresponderIntegration.APIKey" e-placeholder="Votre code d'activation" e-style="width: 200px" e-form="SGARForm" onaftersave="updateUser(user.autoresponderIntegration, 'autoresponderIntegration')">{{user.autoresponderIntegration.APIKey || ""}}</span>
+              <a href="" role="button" ng-click="SGARForm.$show()" ng-hide="SGARForm.$visible || !showEditButton.sgautorepondeur"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+              <hr>
+              n° de compte : <span editable-text="user.autoresponderIntegration.account" e-placeholder="Votre n° de compte SG-Autorépondeur" e-style="width: 200px" e-form="SGARForm" onaftersave="updateUser(user.autoresponderIntegration, 'autoresponderIntegration')">{{user.autoresponderIntegration.account || ""}}</span>
+              <a href="" role="button" ng-click="SGARForm.$show()" ng-hide="SGARForm.$visible || !showEditButton.sgautorepondeur"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+              <hr>
+              n° de liste : <span editable-text="user.autoresponderIntegration.list" e-placeholder="Votre n° de liste SG-Autorépondeur" e-style="width: 200px" e-form="SGARForm" onaftersave="updateUser(user.autoresponderIntegration, 'autoresponderIntegration')">{{user.autoresponderIntegration.list || ""}}</span>
+              <a href="" role="button" ng-click="SGARForm.$show()" ng-hide="SGARForm.$visible || !showEditButton.sgautorepondeur"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+            </div>
+            <!-- <div class="col-sm-12 col-xs-12" ng-mouseenter="showEditButton.sgautorepondeur = true" ng-mouseleave="showEditButton.sgautorepondeur = false">
+              code d'activation api : <span editable-text="user.sgautorepondeurAPIKey" e-placeholder="Votre code d'activation" e-style="width: 200px" e-form="sgautorepondeurAPIKeyForm" onaftersave="updateUser($data, 'sgautorepondeurAPIKey')">{{user.sgautorepondeurAPIKey || ""}}</span>
+              <a href="" role="button" ng-click="sgautorepondeurAPIKeyForm.$show()" ng-hide="sgautorepondeurAPIKeyForm.$visible || !showEditButton.sgautorepondeur"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+              <hr />
+              n° de compte : <span editable-text="user.sgautorepondeurAccount" e-placeholder="Votre n° de compte SG-Autorépondeur" e-style="width: 200px" e-form="sgautorepondeurAccountForm" onaftersave="updateUser($data, 'sgautorepondeurAccount')">{{user.sgautorepondeurAccount || ""}}</span>
+              <a href="" role="button" ng-click="sgautorepondeurAccountForm.$show()" ng-hide="sgautorepondeurAccountForm.$visible || !showEditButton.sgautorepondeur"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+              <hr />
+              n° de liste : <span editable-text="user.sgautorepondeurList" e-placeholder="Votre n° de liste SG-Autorépondeur" e-style="width: 200px" e-form="sgautorepondeurListForm" onaftersave="updateUser($data, 'sgautorepondeurList')">{{user.sgautorepondeurList || ""}}</span>
+              <a href="" role="button" ng-click="sgautorepondeurListForm.$show()" ng-hide="sgautorepondeurListForm.$visible || !showEditButton.sgautorepondeur"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+            </div> -->
+          </td>
+          <td ng-switch-when="Autre">
+            Pour l'instant, les autres autorépondeurs ne sont pas encore supportés. <br>
+            <a href="" contact-me type="Demande spéciale" object="Intégration nouvel autorépondeur" message="Mon autorépondeur est ...">Indiquez-moi quel est votre autorépondeur</a> pour une intégration prochaine.
+          </td>
+
+        </tr>
+        <!-- <tr ng-mouseenter="showEditButton.sgautorepondeur = true" ng-mouseleave="showEditButton.sgautorepondeur = false">
+          <td>
+            <div class="col-sm-5 col-xs-12">
+              <p>
+                <b>Compte SG-Autorépondeur</b>
+              </p>
+            </div>
+            <div class="col-sm-7 col-xs-12">
+              n° de compte : <span editable-text="user.sgautorepondeurAccount" e-placeholder="Votre n° de compte SG-Autorépondeur" e-style="width: 200px" e-form="sgautorepondeurAccountForm" onaftersave="updateUser($data, 'sgautorepondeurAccount')">{{user.sgautorepondeurAccount || ""}}</span>
+              <a href="" role="button" ng-click="sgautorepondeurAccountForm.$show()" ng-hide="sgautorepondeurAccountForm.$visible || !showEditButton.sgautorepondeur"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+              <hr />
+              n° de liste : <span editable-text="user.sgautorepondeurList" e-placeholder="Votre n° de liste SG-Autorépondeur" e-style="width: 200px" e-form="sgautorepondeurListForm" onaftersave="updateUser($data, 'sgautorepondeurList')">{{user.sgautorepondeurList || ""}}</span>
+              <a href="" role="button" ng-click="sgautorepondeurListForm.$show()" ng-hide="sgautorepondeurListForm.$visible || !showEditButton.sgautorepondeur"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+            </div>
+          </td>
+        </tr> -->
+      </table>
+
+    </div>
+  </div>
+</div>

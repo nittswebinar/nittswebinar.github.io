@@ -1,0 +1,74 @@
+
+<div class="row">
+  <div class="col-xs-offset-1 col-xs-10 well">
+    montant sur votre compte affilié : <span class="h2">{{user.affiliationAccount | currency : '€'}}</span>
+  </div>
+</div>
+
+<div class="row">
+  <div class="">
+    <div class="">
+      <table class="table">
+
+        <tr>
+          <td>
+            <div class="col-sm-4 col-xs-12">
+              <p>
+                <b>Lien d'affiliation à partager</b>
+                <br />
+                <small class="text-muted"></small>
+              </p>
+            </div>
+            <div class="col-sm-8 col-xs12">
+              <input type="text" class="form-control input-sm" readonly value="https://localhost/special/{{ user.id }}" onclick="this.select()"/>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="col-sm-5 col-xs-8">
+              <p>
+                <b>Nombre de clics sur votre lien</b>
+              </p>
+            </div>
+            <div class="col-sm-7 col-xs-4">
+              {{user.affiliationStats.hopCount}}
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="col-sm-5 col-xs-12">
+              <b>Gains totaux d'affiliation</b>
+            </div>
+            <div class="col-sm-7 col-xs-12">
+              {{ user.affiliationStats.totalEarned | currency: '€' }}
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="col-sm-12 col-xs-12">
+              <b>Utilisateurs affiliés <span class="badge">{{ affiliates.length }}</span> : </b>
+            </div>
+          </td>
+        </tr>
+        <tr ng-repeat="aff in affiliates">
+          <td ng-class="{'success': aff.accountType == 'premium'}">
+            <div class="col-sm-4 col-xs-12">
+              {{ aff.username }}
+            </div>
+            <div class="col-sm-4 col-xs-5">
+              Abonné <span ng-if="aff.accountType == 'free'">gratuit</span> <span ng-if="aff.accountType == 'premium'">premium</span>
+            </div>
+            <div class="col-sm-4 col-xs-7">
+              Inscrit le {{ aff.createdAt | amDateFormat:'DD MMMM YYYY' }}
+            </div>
+          </td>
+        </tr>
+      </table>
+
+    </div>
+  </div>
+</div>
