@@ -7,11 +7,12 @@ date: 2016-09-18
 ## Utilisez le SDK de NITTS Webinar sur votre site web
 
 * 1 - Inclure le fichier du SDK
-```html
+
+```
 <script src="https://raw.githubusercontent.com/nittswebinar/client-javascript-sdk/master/index.min.js"></script>
 ```
 
-* 2 - 
+* 2 -
 
 
 #### Release
