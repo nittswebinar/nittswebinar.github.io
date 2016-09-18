@@ -16,4 +16,4 @@ date: 2016-09-18
 
 
 #### Release
-* SDK v1.0.0 : [télécharger](https://raw.githubusercontent.com/nittswebinar/client-javascript-sdk/master/index.min.js)
+* SDK v1.0.0 : <a download="nitts_sdk.min.js" href="https://raw.githubusercontent.com/nittswebinar/client-javascript-sdk/master/index.min.js">télécharger</a>
