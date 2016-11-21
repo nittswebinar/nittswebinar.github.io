@@ -18,22 +18,22 @@
             <ul nitts-session="data" class="nav navbar-nav navbar-right">
 
                 <!-- displayed when not already premium -->
-                <li ng-if="session.getUser().accountType != 'premium'">
+                <!-- <li ng-if="session.getUser().accountType != 'premium'">
                     <a href="{{ site.url }}/niveau-superieur">
                         <button class="btn btn-primary"><i class="fa fa-rocket fa-lg" aria-hidden="true"></i> Passer en version premium</button>
                     </a>
-                </li>
+                </li> -->
 
                 <!-- displayed when logged out -->
-                <li ng-if="!session.isAuthenticated()">
+                <!-- <li ng-if="!session.isAuthenticated()">
                   <a role="button" nitts-session="register">Essayer gratuitement</a>
                 </li>
                 <li ng-if="!session.isAuthenticated()">
                   <a role="button" class="dropdown" nitts-session="authenticate" uib-dropdown-toggle><i class="fa fa-sign-in" aria-hidden="true"></i> Connexion</a>
-                </li>
+                </li> -->
 
                 <!-- displayed when logged in -->
-                <li uib-dropdown ng-if="session.isAuthenticated()">
+                <!-- <li uib-dropdown ng-if="session.isAuthenticated()">
                   <a role="button" class="dropdown" uib-dropdown-toggle><i class="fa fa-user" aria-hidden="true"></i> <span ng-bind="session.getUser().username"></span> <span class="caret"></span></a>
                   <ul class="dropdown-menu" uib-dropdown-menu>
                     <li>
@@ -46,15 +46,15 @@
                       <a role="button" nitts-session="logout"><i class="fa fa-sign-out" aria-hidden="true"></i> Deconnexion</a>
                     </li>
                   </ul>
-                </li>
-                <li uib-dropdown ng-if="session.isAuthenticated()">
+                </li> -->
+                <li uib-dropdown>
                   <a role="button" class="dropdown" uib-dropdown-toggle><i class="fa fa-question-circle" aria-hidden="true"></i> Besoin d'aide ?</a>
                   <ul class="dropdown-menu" uib-dropdown-menu>
                     <li>
                       <a role="button" contact-me><i class="fa fa-envelope" aria-hidden="true"></i> Contacter le support</a>
                     </li>
                   </ul>
-                </li>
+                <!-- </li> -->
 
             </ul>
 
