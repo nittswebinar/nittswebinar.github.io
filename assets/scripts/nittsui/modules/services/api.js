@@ -7,7 +7,7 @@ var apiService = angular.module('nittsAppApi', ['nittsAppSessions', 'nittsAlert'
 // api service definition
 apiService.provider('api', [function () {
 
-	var apiDomain = 'https://nittswebinar.com/';
+	var apiDomain = 'https://app.nittswebinar.com/';
 	var apiPrefix = '/';
 
 	this.setApiDomain = function(_apiDomain) {

@@ -6,7 +6,7 @@ var sessionService = angular.module('nittsAppSessions', ['ngCookies', 'nittsAler
 
   sessionService.service('Session', ['$http', '$cookies', 'alerts', function($http, $cookies, alerts) {
 
-  var API_URL = "https://www.nittswebinar.com";
+  var API_URL = "https://www.app.nittswebinar.com";
   var AUTH_URL = API_URL + "/auth";
 
   // get the session data from the local cookies storage
